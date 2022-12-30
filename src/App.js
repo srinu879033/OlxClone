@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import HomePage from "./components/HomePage/HomePage";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import SignupPage from "./components/SignUpPage/SignUpPage";
+import LoginPage from "./components/LoginPage/LoginPage";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import CreatePage from "./components/CreatePage/CreatePage";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<ProtectedRoute />}>
+            <Route exact path="/" element={<HomePage />} />
+          </Route>
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/sellProduct" element={<CreatePage />} />
+        </Routes>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
