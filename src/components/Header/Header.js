@@ -5,9 +5,10 @@ import Search from "../../assets/icons/Search";
 import Arrow from "../../assets/icons/Arrow";
 import SellButton from "../../assets/icons/SellButton";
 import SellButtonPlus from "../../assets/icons/SellButtonPlus";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -34,18 +35,33 @@ const Header = () => {
           <span> ENGLISH </span>
           <Arrow></Arrow>
         </div>
-        <div className="loginPage">
+        {!localStorage.getItem("jwt_token") && (
           <Link to="/login">
-            <span>Login</span>
+            <div className="loginPage">
+              <span style={{ cursor: "pointer" }}>Login</span>
+              <hr />
+            </div>
           </Link>
-          <hr />
-        </div>
-
+        )}
+        {localStorage.getItem("jwt_token") && (
+          <div
+            className="loginPage"
+            onClick={() => {
+              localStorage.removeItem("jwt_token");
+              navigate("/login");
+            }}
+          >
+            <span style={{ cursor: "pointer" }}>Logout</span>
+            <hr />
+          </div>
+        )}
         <div className="sellMenu">
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
-            <span>SELL</span>
+            <Link to="/sellProduct">
+              <span style={{ cursor: "pointer" }}>SELL</span>
+            </Link>
           </div>
         </div>
       </div>

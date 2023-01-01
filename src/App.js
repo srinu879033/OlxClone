@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import HomePage from "./components/HomePage/HomePage";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignupPage from "./components/SignUpPage/SignUpPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";

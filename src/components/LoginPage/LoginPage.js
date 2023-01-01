@@ -22,13 +22,14 @@ const LoginPage = () => {
     } else if (userData.password === "") {
       alert("Password is Required");
     } else {
+      let result = null;
       try {
-        const result = await axios.post("/login", userData);
+        result = await axios.post("/login", userData);
         localStorage.setItem("jwt_token", result.data.jwt_token);
         alert("Successfully Logged In");
         navigate("/");
       } catch (err) {
-        alert(err.message);
+        alert(err.response.data.msg);
       }
     }
   };
