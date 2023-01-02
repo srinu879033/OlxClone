@@ -1,11 +1,12 @@
 import logo from "./logo.svg";
 import "./App.css";
 import HomePage from "./components/HomePage/HomePage";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import SignupPage from "./components/SignUpPage/SignUpPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import CreatePage from "./components/CreatePage/CreatePage";
+import ProductDetailsPage from "./components/ProductDetailsPage.js/ProductDetailsPage";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sellProduct" element={<CreatePage />} />
+          <Route path="/products/:id" element={<ProductDetailsPage />} />
         </Routes>
       </Router>
     </div>

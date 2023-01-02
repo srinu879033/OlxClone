@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import Heart from "../../assets/icons/Heart";
 import "./Products.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
-      const result = await axios.get("/products/getallUnsoldProducts");
+      const result = await axios.get("/products/getAllUnsoldProducts");
       setProducts(result.data.data);
     };
     getProducts();
@@ -47,19 +48,21 @@ const Products = () => {
           {products &&
             products.map((product) => {
               return (
-                <div className="card">
-                  <div className="favorite">
-                    <Heart></Heart>
+                <Link to={`/products/${product._id}`}>
+                  <div className="card">
+                    <div className="favorite">
+                      <Heart></Heart>
+                    </div>
+                    <div className="image">
+                      <img src={product.image_urls[0]} alt="" />
+                    </div>
+                    <div className="content">
+                      <p className="rate">{product.price}</p>
+                      <span className="kilometer">{product.name}</span>
+                      <p className="name"> {product.description}</p>
+                    </div>
                   </div>
-                  <div className="image">
-                    <img src={product.image_urls[0]} alt="" />
-                  </div>
-                  <div className="content">
-                    <p className="rate">{product.price}</p>
-                    <span className="kilometer">{product.name}</span>
-                    <p className="name"> {product.description}</p>
-                  </div>
-                </div>
+                </Link>
               );
             })}
         </div>
