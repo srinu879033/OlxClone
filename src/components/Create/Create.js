@@ -10,8 +10,10 @@ import {
 } from "firebase/storage";
 import Firebase from "../../firebase";
 import axios from "../../axios";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+  const navigate = useNavigate();
   const [productData, setProductData] = useState({
     name: "",
     price: 0,
@@ -86,6 +88,7 @@ const Create = () => {
         },
       });
       alert("Product Added");
+      navigate("/");
     } catch (err) {
       console.log(err.message);
     }

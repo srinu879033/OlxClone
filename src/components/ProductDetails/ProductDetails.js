@@ -22,7 +22,6 @@ const ProductDetails = () => {
         uploaderName: result.data.sellerData.name,
       });
     };
-    console.log("fuck u");
     getProductDetails();
   }, [id]);
   return (
